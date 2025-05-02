@@ -29,12 +29,6 @@ pipeline {
             }
         }
         
-        stage('Checkout Code from Github') {
-            steps {
-                git branch: 'main', credentialsId: 'Github', url: 'https://github.com/msdeepak052/registration-app.git'
-            }
-        }
-        
         //Checkout Code
         
         stage('Checkout Code from Github') {
