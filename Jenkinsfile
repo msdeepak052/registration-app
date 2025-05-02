@@ -79,7 +79,7 @@ pipeline {
         }
 
         // PWD and ls
-        stage('SonarQube Quality Check') {
+        stage('pwd and ls') {
             steps {
                 script {
                     sh "pwd"
