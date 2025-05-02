@@ -55,7 +55,7 @@ pipeline {
 
          // SonarQube Quality Check
         
-        stage('Test Application') {
+        stage('SonarQube Quality Check') {
             steps {
                 script {
                     withSonarQubeEnv(credentialsId: 'Sonar') {
