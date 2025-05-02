@@ -24,7 +24,7 @@ pipeline {
                     echo "The Node name is: ${env.NODE_NAME}"
                     echo "The Build Number is: ${env.BUILD_NUMBER}"
                     echo "The Jenkins Home directory is: ${env.JENKINS_HOME}"
-                    currentBuild.displayName = "#${env.BUILD_NUMBER} - My Build Name"
+                    currentBuild.displayName = "#${env.BUILD_NUMBER} - deepak"
                 }
             }
         }
