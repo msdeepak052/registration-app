@@ -14,7 +14,17 @@ pipeline {
             steps {
                 cleanWs()
             }
-        }    
+        }
+
+        environment {
+          APP_NAME = "register-app-pipeline"
+          RELEASE = "1.0.0"
+          DOCKER_USER = "devopsdktraining"
+          DOCKER_PASS = "Docker"
+          IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
+          IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+        }
+
         
         // Print Environment Variables
         stage('Print Environment Variables') {
@@ -76,8 +86,24 @@ pipeline {
                 }
             }    
         }
-        
-        
+
+        // Build and Push Docker Image 
+        stage('Build and Push Docker Image') {
+            steps {
+                script {
+                   docker.withRegistry('' ,DOCKER_PASS) {
+                       docker_image = docker.build "${IMAGE_NAME}"
+                    }
+
+                    docker.withRegistry('' ,DOCKER_PASS) {
+                       docker_image.push("${IMAGE_TAG}")
+                       docker_image.push('latest')
+                    }
+                    
+                }    
+            }
+        }
+    
         
     }
 }
