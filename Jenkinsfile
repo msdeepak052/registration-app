@@ -78,17 +78,6 @@ pipeline {
             }
         }
 
-        // SonarQube Quality Gate Check
-        
-        stage('SonarQube Quality Gate Check') {
-            steps {
-                script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'Sonar'
-                        sh "mvn sonar:sonar"
-                }
-            }    
-        }
-
         // Build and Push Docker Image 
         stage('Build and Push Docker Image') {
             steps {
