@@ -8,6 +8,15 @@ pipeline {
         maven 'Maven-3.8.5'
     }
 
+    environment {
+          APP_NAME = "register-app-pipeline"
+          RELEASE = "1.0.0"
+          DOCKER_USER = "devopsdktraining"
+          DOCKER_PASS = "Docker"
+          IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
+          IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+        }
+
     stages {
         
         stage('Cleanup Workspace') {
@@ -16,14 +25,7 @@ pipeline {
             }
         }
 
-        environment {
-          APP_NAME = "register-app-pipeline"
-          RELEASE = "1.0.0"
-          DOCKER_USER = "devopsdktraining"
-          DOCKER_PASS = "Docker"
-          IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
-          IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-        }
+        
 
         
         // Print Environment Variables
