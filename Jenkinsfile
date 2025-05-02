@@ -65,6 +65,17 @@ pipeline {
             
             }
         }
+
+        // SonarQube Quality Gate Check
+        
+        stage('SonarQube Quality Gate Check') {
+            steps {
+                script {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'Sonar'
+                        sh "mvn sonar:sonar"
+                }
+            }    
+        }
         
         
         
