@@ -78,6 +78,17 @@ pipeline {
             }
         }
 
+        // PWD and ls
+        stage('SonarQube Quality Check') {
+            steps {
+                script {
+                    sh "pwd"
+                    sh "ls -lrt"
+                }    
+            
+            }
+        }
+
         // Build and Push Docker Image 
         stage('Build and Push Docker Image') {
             steps {
